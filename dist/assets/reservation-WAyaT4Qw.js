@@ -1,0 +1,1 @@
+import{a as r}from"./request-BWFo0bpa.js";function a(e){return r({url:"/reader/reservation/list",method:"get",params:e})}function n(e){return r({url:`/reader/reservation/cancel/${e}`,method:"post"})}export{n as c,a as g};

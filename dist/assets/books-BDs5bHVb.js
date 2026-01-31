@@ -1,0 +1,1 @@
+import{a as r}from"./request-BWFo0bpa.js";function t(e){return r({url:"/reader/books/search",method:"get",params:e})}function a(e){return r({url:`/reader/books/detail/${e}`,method:"get"})}function s(e){return r({url:"/reader/reservation/create",method:"post",data:e})}export{a,t as g,s as r};
