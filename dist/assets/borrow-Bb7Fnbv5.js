@@ -1,1 +1,0 @@
-import{a as e}from"./request-BWFo0bpa.js";function t(r){return e({url:"/reader/borrow/list",method:"get",params:r})}function a(r){return e({url:`/reader/borrow/renew/${r}`,method:"post"})}function n(r){return e({url:"/reader/borrow/create",method:"post",data:r})}function u(r){return e({url:`/reader/borrow/detail/${r}`,method:"get"})}export{u as a,n as b,t as g,a as r};
