@@ -139,15 +139,23 @@ const handleLogin = async () => {
   loading.value = true
   try {
     const res = await login(loginForm.value)
-    userStore.setToken(res.data.token)
-    userStore.setUser(res.data.user)
-    showToast({
-      type: 'success',
-      message: '登录成功'
-    })
-    router.push('/home')
+    if (res.data && res.data.token) {
+      userStore.setToken(res.data.token)
+      userStore.setUser(res.data.user)
+      showToast({
+        type: 'success',
+        message: '登录成功'
+      })
+      router.push('/home')
+    } else {
+      throw new Error('登录失败：未获取到token')
+    }
   } catch (error) {
     console.error('登录失败:', error)
+    showToast({
+      type: 'error',
+      message: '登录失败，请检查用户名和密码'
+    })
   } finally {
     loading.value = false
   }
@@ -165,6 +173,11 @@ const handleRegister = async () => {
     activeTab.value = 'login'
   } catch (error) {
     console.error('注册失败:', error)
+    const errorMsg = error.response?.data?.msg || '注册失败，请检查输入信息'
+    showToast({
+      type: 'error',
+      message: errorMsg
+    })
   } finally {
     loading.value = false
   }

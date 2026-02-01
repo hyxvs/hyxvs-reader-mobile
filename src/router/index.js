@@ -76,6 +76,20 @@ router.beforeEach((to, from, next) => {
     if (!token) {
       next('/login')
     } else {
+      // 检查token是否过期（简单验证）
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]))
+        const exp = payload.exp * 1000
+        if (Date.now() > exp) {
+          userStore.logout()
+          next('/login')
+          return
+        }
+      } catch (error) {
+        userStore.logout()
+        next('/login')
+        return
+      }
       next()
     }
   } else {
